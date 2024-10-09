@@ -94,17 +94,25 @@ def callback_y(*values):
 
 
 def callback_touchUP(*values):
+    global current_steering
+    global current_accel
+    
     data = b''
     if current_accel != ACCEL.NEUTRAL:
         if current_accel == ACCEL.UP:
             data = b'R_UP'
+            current_accel = ACCEL.NEUTRAL
         elif current_accel == ACCEL.DOWN:
             data = b'R_DOWN'
+            current_accel = ACCEL.NEUTRAL
+
     if current_steering != STEER.NEUTRAL:
         if current_steering == STEER.LEFT:
             data = b'R_LEFT'
+            current_steering = STEER.NEUTRAL
         elif current_steering == STEER.RIGHT:
             data = b'R_RIGHT'
+            current_steering = STEER.NEUTRAL
 
     if len(data) > 0:
         client_socket.sendto(data, address)
