@@ -41,6 +41,8 @@ def press_rescue():
         keyboard.release(Key.backspace)
     threading.Thread(target=rescue_thread).start()
 
+# --------------------------------------------------
+
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(
     static_image_mode=False,
